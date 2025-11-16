@@ -1,0 +1,17 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Markdown files
+*.md text
+
+# JavaScript files
+*.js text
+*.jsx text
+*.json text
+
+# CSS files
+*.css text
+
+# Config files
+.eslintrc.json text
+.gitignore text
