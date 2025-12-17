@@ -1,217 +1,198 @@
-import Layout from '@/components/Layout'
-import Image from 'next/image'
+import Layout from '../components/Layout';
+import Image from 'next/image';
+import Link from 'next/link';
+
+const skills = [
+  { name: 'Java', level: 85 },
+  { name: 'JavaScript', level: 80 },
+  { name: 'React', level: 75 },
+  { name: 'Socket', level: 70 },
+  { name: 'Node.js', level: 75 },
+  { name: 'Git', level: 80 },
+];
 
 export default function Profile() {
-  const skills = [
-    { name: 'Java', level: 85, color: 'bg-gradient-to-r from-[#D34E4E] to-[#CE7E5A]' },
-    { name: 'JavaScript', level: 80, color: 'bg-gradient-to-r from-[#DDC57A] to-[#CE7E5A]' },
-    { name: 'React & Next.js', level: 75, color: 'bg-gradient-to-r from-[#CE7E5A] to-[#D34E4E]' },
-    { name: 'Socket Programming', level: 70, color: 'bg-gradient-to-r from-[#DDC57A] to-[#D34E4E]' },
-    { name: 'Node.js & Express', level: 75, color: 'bg-gradient-to-r from-[#D34E4E] to-[#DDC57A]' },
-    { name: 'Git & GitHub', level: 80, color: 'bg-gradient-to-r from-[#CE7E5A] to-[#DDC57A]' }
-  ]
-
   return (
     <Layout>
-      <div className="max-w-5xl mx-auto">
-        {/* Hero Header with Gradient */}
-        <div className="relative bg-gradient-to-br from-[#D34E4E] via-[#CE7E5A] to-[#DDC57A] rounded-2xl shadow-2xl p-12 mb-8 overflow-hidden">
-          <div className="absolute inset-0 bg-black opacity-10"></div>
-          <div className="relative z-10 text-center">
-            <div className="w-40 h-40 bg-white rounded-full mx-auto mb-6 flex items-center justify-center shadow-xl transform hover:scale-110 transition-transform duration-300">
-              <span className="text-6xl font-bold bg-gradient-to-br from-[#D34E4E] to-[#CE7E5A] bg-clip-text text-transparent">
-                QT
-              </span>
+      <div className="min-h-screen bg-background-dark">
+        {/* Hero Header */}
+        <div className="bg-gradient-to-r from-primary via-blue-500 to-indigo-500 py-20">
+          <div className="container mx-auto px-4 text-center">
+            <div className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-2xl">
+              <Image
+                src="/avatar.png"
+                alt="Quang Tin"
+                fill
+                className="object-cover"
+              />
             </div>
-            <h1 className="text-5xl font-bold text-white mb-3 tracking-tight">Quang Tín</h1>
-            <p className="text-2xl text-white/90 mb-6">Sinh viên Lập Trình Mạng</p>
+            <h1 className="text-4xl font-bold text-white mb-2">Quang Tín</h1>
+            <p className="text-xl text-white/90 mb-4">Web Developer & Socket Programming Enthusiast</p>
             <div className="flex justify-center gap-4">
-              <a href="mailto:quangtin13072004@gmail.com" 
-                 className="bg-white text-[#D34E4E] px-6 py-3 rounded-lg font-semibold hover:bg-[#F9E7B2] transition-colors duration-200 shadow-lg">
-                📧 Email
+              <a 
+                href="https://github.com/quangtin137" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-full transition-all"
+              >
+                GitHub
               </a>
-              <a href="https://github.com/quangtin137" 
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 className="bg-gray-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200 shadow-lg">
-                🔗 GitHub
+              <a 
+                href="mailto:contact@example.com"
+                className="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-full transition-all"
+              >
+                Email
               </a>
             </div>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Left Column */}
-          <div className="md:col-span-2 space-y-8">
-            {/* About */}
-            <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <span className="text-4xl">👨‍💻</span>
-                Giới thiệu
+        {/* About Section */}
+        <div className="container mx-auto px-4 py-16">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-card-dark rounded-2xl p-8 shadow-xl border border-card-border mb-12">
+              <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
+                <span className="text-2xl mr-3">👤</span>
+                Về tôi
               </h2>
-              <div className="space-y-4 text-gray-700 leading-relaxed">
-                <p className="text-lg">
-                  Xin chào! Mình là <span className="font-semibold text-[#D34E4E]">Quang Tín</span>, 
-                  một sinh viên đam mê lập trình mạng và phát triển web. Blog này được tạo ra nhằm chia sẻ 
-                  những kiến thức mình học được trong quá trình nghiên cứu về Java, JavaScript và các công nghệ 
-                  lập trình mạng.
-                </p>
-                <p className="text-lg">
-                  Mình tin rằng việc chia sẻ kiến thức không chỉ giúp người khác mà còn giúp bản thân hiểu sâu hơn 
-                  về những gì mình đã học. Hy vọng các bài viết của mình sẽ hữu ích cho bạn!
-                </p>
-                <div className="bg-gradient-to-r from-[#F9E7B2]/30 to-[#DDC57A]/20 border-l-4 border-[#D34E4E] p-4 rounded-r-lg mt-6">
-                  <p className="text-gray-700 italic">
-                    &ldquo;Học không giới hạn, chia sẻ không ngừng nghỉ. Cùng nhau phát triển trong cộng đồng lập trình!&rdquo;
-                  </p>
-                </div>
-              </div>
+              <p className="text-text-secondary leading-relaxed mb-4">
+                Xin chào! Tôi là <strong className="text-white">Quang Tín</strong>, một sinh viên đam mê về 
+                phát triển web và lập trình mạng. Tôi đặc biệt quan tâm đến Socket Programming, 
+                xây dựng các ứng dụng real-time và học hỏi các công nghệ mới.
+              </p>
+              <p className="text-text-secondary leading-relaxed">
+                Blog này là nơi tôi chia sẻ kiến thức, kinh nghiệm và các dự án cá nhân trong quá trình 
+                học tập và làm việc. Hy vọng những bài viết của tôi sẽ hữu ích cho bạn! 🚀
+              </p>
             </div>
 
-            {/* Skills Progress */}
-            <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <span className="text-4xl">🚀</span>
+            {/* Skills Section */}
+            <div className="bg-card-dark rounded-2xl p-8 shadow-xl border border-card-border mb-12">
+              <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
+                <span className="text-2xl mr-3">💻</span>
                 Kỹ năng
               </h2>
-              <div className="space-y-6">
+              <div className="grid gap-4">
                 {skills.map((skill, index) => (
-                  <div key={index} className="group">
+                  <div key={index}>
                     <div className="flex justify-between mb-2">
-                      <span className="font-semibold text-gray-900">{skill.name}</span>
-                      <span className="text-gray-600 font-medium">{skill.level}%</span>
+                      <span className="font-medium text-white">{skill.name}</span>
+                      <span className="text-text-secondary">{skill.level}%</span>
                     </div>
-                    <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
+                    <div className="h-3 bg-[#283039] rounded-full overflow-hidden">
                       <div 
-                        className={`h-full ${skill.color} rounded-full transition-all duration-500 group-hover:scale-x-105`}
+                        className="h-full bg-gradient-to-r from-primary to-blue-400 rounded-full transition-all duration-500"
                         style={{ width: `${skill.level}%` }}
-                      ></div>
+                      />
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Technologies */}
-            <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <span className="text-4xl">🛠️</span>
-                Công nghệ & Công cụ
+            {/* Technologies Grid */}
+            <div className="bg-card-dark rounded-2xl p-8 shadow-xl border border-card-border mb-12">
+              <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
+                <span className="text-2xl mr-3">🛠️</span>
+                Công nghệ yêu thích
               </h2>
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div className="bg-gradient-to-br from-[#F9E7B2]/30 to-[#F9E7B2]/50 rounded-lg p-6 border-l-4 border-[#D34E4E] hover:shadow-md transition-shadow duration-200">
-                  <h3 className="font-bold text-gray-900 mb-3 text-lg">Ngôn ngữ lập trình</h3>
-                  <ul className="text-gray-700 space-y-2">
-                    <li className="flex items-center gap-2">
-                      <span className="text-[#D34E4E]">☕</span> Java (Core, OOP, Socket)
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-[#DDC57A]">⚡</span> JavaScript (ES6+, Node.js)
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-[#CE7E5A]">🐍</span> Python
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-[#D34E4E]">⚙️</span> C/C++
-                    </li>
-                  </ul>
-                </div>
-                
-                <div className="bg-gradient-to-br from-[#DDC57A]/20 to-[#DDC57A]/40 rounded-lg p-6 border-l-4 border-[#CE7E5A] hover:shadow-md transition-shadow duration-200">
-                  <h3 className="font-bold text-gray-900 mb-3 text-lg">Framework & Tools</h3>
-                  <ul className="text-gray-700 space-y-2">
-                    <li className="flex items-center gap-2">
-                      <span className="text-[#D34E4E]">⚛️</span> Next.js, React
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-[#CE7E5A]">📦</span> Node.js, Express
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-[#DDC57A]">🌐</span> TCP/IP, HTTP, WebSocket
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-gray-700">🔧</span> Git, GitHub
-                    </li>
-                  </ul>
-                </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {[
+                  { name: 'React', icon: '⚛️' },
+                  { name: 'Next.js', icon: '▲' },
+                  { name: 'Node.js', icon: '💚' },
+                  { name: 'Java', icon: '☕' },
+                  { name: 'Socket.io', icon: '🔌' },
+                  { name: 'TailwindCSS', icon: '🎨' },
+                  { name: 'Git', icon: '📦' },
+                  { name: 'VS Code', icon: '💻' },
+                ].map((tech, index) => (
+                  <div 
+                    key={index}
+                    className="bg-[#283039] rounded-xl p-4 text-center hover:bg-[#323d4a] transition-all cursor-default border border-card-border"
+                  >
+                    <span className="text-2xl">{tech.icon}</span>
+                    <p className="mt-2 font-medium text-white">{tech.name}</p>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
 
-          {/* Right Column - Stats & Interests */}
-          <div className="space-y-8">
             {/* Stats Cards */}
-            <div className="bg-gradient-to-br from-[#D34E4E] to-[#CE7E5A] rounded-xl shadow-lg p-6 text-white">
-              <h3 className="text-xl font-bold mb-4">📊 Thống kê</h3>
-              <div className="space-y-4">
-                <div className="bg-white bg-opacity-20 rounded-lg p-4 backdrop-blur-sm">
-                  <div className="text-3xl font-bold">9</div>
-                  <div className="text-sm text-white/90">Bài viết</div>
-                </div>
-                <div className="bg-white bg-opacity-20 rounded-lg p-4 backdrop-blur-sm">
-                  <div className="text-3xl font-bold">2</div>
-                  <div className="text-sm text-white/90">Ngôn ngữ chính</div>
-                </div>
-                <div className="bg-white bg-opacity-20 rounded-lg p-4 backdrop-blur-sm">
-                  <div className="text-3xl font-bold">6+</div>
-                  <div className="text-sm text-white/90">Công nghệ</div>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              <div className="bg-gradient-to-br from-primary to-blue-500 rounded-2xl p-6 text-center text-white shadow-xl">
+                <div className="text-4xl font-bold mb-2">9+</div>
+                <div className="text-white/90">Bài viết</div>
+              </div>
+              <div className="bg-gradient-to-br from-purple-600 to-purple-500 rounded-2xl p-6 text-center text-white shadow-xl">
+                <div className="text-4xl font-bold mb-2">2+</div>
+                <div className="text-white/90">Ngôn ngữ</div>
+              </div>
+              <div className="bg-gradient-to-br from-cyan-600 to-cyan-500 rounded-2xl p-6 text-center text-white shadow-xl">
+                <div className="text-4xl font-bold mb-2">6+</div>
+                <div className="text-white/90">Công nghệ</div>
               </div>
             </div>
 
-            {/* Interests */}
-            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-              <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="text-2xl">❤️</span>
-                Sở thích
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                <span className="bg-[#F9E7B2] text-[#D34E4E] px-3 py-2 rounded-lg text-sm font-medium hover:bg-[#DDC57A] hover:text-white transition-all duration-200">
-                  🌐 Lập trình mạng
-                </span>
-                <span className="bg-[#F9E7B2] text-[#CE7E5A] px-3 py-2 rounded-lg text-sm font-medium hover:bg-[#DDC57A] hover:text-white transition-all duration-200">
-                  💻 Web Development
-                </span>
-                <span className="bg-[#F9E7B2] text-[#D34E4E] px-3 py-2 rounded-lg text-sm font-medium hover:bg-[#DDC57A] hover:text-white transition-all duration-200">
-                  🌟 Open Source
-                </span>
-                <span className="bg-[#F9E7B2] text-[#CE7E5A] px-3 py-2 rounded-lg text-sm font-medium hover:bg-[#DDC57A] hover:text-white transition-all duration-200">
-                  📚 Học công nghệ mới
-                </span>
-                <span className="bg-[#F9E7B2] text-[#D34E4E] px-3 py-2 rounded-lg text-sm font-medium hover:bg-[#DDC57A] hover:text-white transition-all duration-200">
-                  🤝 Chia sẻ kiến thức
-                </span>
+            {/* Interests Section */}
+            <div className="bg-card-dark rounded-2xl p-8 shadow-xl border border-card-border mb-12">
+              <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
+                <span className="text-2xl mr-3">🎯</span>
+                Sở thích & Mục tiêu
+              </h2>
+              <div className="flex flex-wrap gap-3">
+                {[
+                  '🌐 Web Development',
+                  '🔌 Network Programming',
+                  '📱 Mobile Apps',
+                  '🤖 AI & Machine Learning',
+                  '☁️ Cloud Computing',
+                  '🎮 Game Development',
+                  '📚 Học hỏi liên tục',
+                  '🤝 Chia sẻ kiến thức',
+                ].map((interest, index) => (
+                  <span 
+                    key={index}
+                    className="bg-[#283039] text-text-secondary px-4 py-2 rounded-full text-sm hover:bg-[#323d4a] transition-all border border-card-border"
+                  >
+                    {interest}
+                  </span>
+                ))}
               </div>
             </div>
 
             {/* Contact Card */}
-            <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-              <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span className="text-2xl">📬</span>
-                Liên hệ
-              </h3>
-              <div className="space-y-3">
-                <a href="mailto:quangtin13072004@gmail.com" 
-                   className="flex items-center gap-3 text-gray-700 hover:text-[#D34E4E] transition-colors duration-200 group">
-                  <span className="text-xl group-hover:scale-110 transition-transform duration-200">📧</span>
-                  <span className="text-sm">quangtin13072004@gmail.com</span>
+            <div className="bg-gradient-to-r from-primary via-blue-500 to-indigo-500 rounded-2xl p-8 text-center text-white shadow-xl">
+              <h2 className="text-2xl font-bold mb-4">Kết nối với tôi! 🤝</h2>
+              <p className="mb-6 text-white/90">
+                Bạn có câu hỏi hoặc muốn hợp tác? Đừng ngần ngại liên hệ!
+              </p>
+              <div className="flex justify-center gap-4 flex-wrap">
+                <a 
+                  href="https://github.com/QuangTin1-hus"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full font-medium transition-all"
+                >
+                  GitHub
                 </a>
-                <a href="https://github.com/quangtin137" 
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   className="flex items-center gap-3 text-gray-700 hover:text-[#CE7E5A] transition-colors duration-200 group">
-                  <span className="text-xl group-hover:scale-110 transition-transform duration-200">🔗</span>
-                  <span className="text-sm">github.com/quangtin137</span>
+                <a 
+                  href="mailto:contact@example.com"
+                  className="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full font-medium transition-all"
+                >
+                  Email
                 </a>
-                <div className="flex items-center gap-3 text-gray-700">
-                  <span className="text-xl">🌐</span>
-                  <span className="text-sm">Đây chính là blog của mình!</span>
-                </div>
+                <Link 
+                  href="/blog"
+                  className="bg-white text-primary hover:bg-white/90 px-6 py-3 rounded-full font-medium transition-all"
+                >
+                  Xem Blog
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
     </Layout>
-  )
+  );
 }
