@@ -32,7 +32,7 @@ export default function Blog({ allPostsData }) {
         {/* Header */}
         <div className="text-center mb-12 pt-8">
           <h1 className="text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#D34E4E] to-[#CE7E5A] bg-clip-text text-transparent">
               Tất cả bài viết
             </span>
           </h1>
@@ -49,7 +49,7 @@ export default function Blog({ allPostsData }) {
               placeholder="🔍 Tìm kiếm bài viết..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-6 py-4 rounded-2xl border-2 border-gray-200 focus:border-blue-500 focus:outline-none transition-colors text-lg"
+              className="w-full px-6 py-4 rounded-2xl border-2 border-gray-200 focus:border-[#D34E4E] focus:outline-none transition-colors text-lg"
             />
             {searchTerm && (
               <button
@@ -68,7 +68,7 @@ export default function Blog({ allPostsData }) {
             onClick={() => setSelectedCategory('all')}
             className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
               selectedCategory === 'all'
-                ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg scale-105'
+                ? 'bg-gradient-to-r from-[#D34E4E] to-[#CE7E5A] text-white shadow-lg scale-105'
                 : 'bg-white text-gray-700 hover:bg-gray-50 border-2 border-gray-200'
             }`}
           >
@@ -78,8 +78,8 @@ export default function Blog({ allPostsData }) {
             onClick={() => setSelectedCategory('Java')}
             className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
               selectedCategory === 'Java'
-                ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg scale-105'
-                : 'bg-white text-gray-700 hover:bg-orange-50 border-2 border-orange-200'
+                ? 'bg-gradient-to-r from-[#D34E4E] to-[#CE7E5A] text-white shadow-lg scale-105'
+                : 'bg-white text-gray-700 hover:bg-[#F9E7B2]/50 border-2 border-[#DDC57A]'
             }`}
           >
             ☕ Java ({javaCount})
@@ -88,8 +88,8 @@ export default function Blog({ allPostsData }) {
             onClick={() => setSelectedCategory('JavaScript')}
             className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
               selectedCategory === 'JavaScript'
-                ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-white shadow-lg scale-105'
-                : 'bg-white text-gray-700 hover:bg-yellow-50 border-2 border-yellow-200'
+                ? 'bg-gradient-to-r from-[#DDC57A] to-[#CE7E5A] text-white shadow-lg scale-105'
+                : 'bg-white text-gray-700 hover:bg-[#F9E7B2]/50 border-2 border-[#DDC57A]'
             }`}
           >
             🟨 JavaScript ({jsCount})
@@ -101,19 +101,19 @@ export default function Blog({ allPostsData }) {
           {filteredPosts.map((post, index) => (
             <article 
               key={post.id} 
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-blue-200 transform hover:-translate-y-2"
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-[#D34E4E] transform hover:-translate-y-2"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {/* Category Badge */}
               <div className={`h-2 ${
                 post.category === 'Java' 
-                  ? 'bg-gradient-to-r from-orange-400 to-orange-600' 
-                  : 'bg-gradient-to-r from-yellow-400 to-yellow-600'
+                  ? 'bg-gradient-to-r from-[#D34E4E] to-[#CE7E5A]' 
+                  : 'bg-gradient-to-r from-[#DDC57A] to-[#CE7E5A]'
               }`}></div>
               
               <div className="p-6">
                 <Link href={`/blog/${post.id}`}>
-                  <h2 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors mb-3 line-clamp-2">
+                  <h2 className="text-2xl font-bold text-gray-900 group-hover:text-[#D34E4E] transition-colors mb-3 line-clamp-2">
                     {post.title}
                   </h2>
                 </Link>
@@ -127,8 +127,8 @@ export default function Blog({ allPostsData }) {
                   </span>
                   <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
                     post.category === 'Java' 
-                      ? 'bg-orange-100 text-orange-700' 
-                      : 'bg-yellow-100 text-yellow-700'
+                      ? 'bg-[#F9E7B2] text-[#D34E4E]' 
+                      : 'bg-[#F9E7B2] text-[#DDC57A]'
                   }`}>
                     {post.category}
                   </span>
@@ -140,7 +140,7 @@ export default function Blog({ allPostsData }) {
                 
                 <Link 
                   href={`/blog/${post.id}`}
-                  className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold group-hover:gap-3 transition-all"
+                  className="inline-flex items-center gap-2 text-[#D34E4E] hover:text-[#CE7E5A] font-semibold group-hover:gap-3 transition-all"
                 >
                   Đọc tiếp
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -165,7 +165,7 @@ export default function Blog({ allPostsData }) {
                 setSearchTerm('')
                 setSelectedCategory('all')
               }}
-              className="px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors"
+              className="px-6 py-3 bg-gradient-to-r from-[#D34E4E] to-[#CE7E5A] text-white rounded-xl hover:from-[#CE7E5A] hover:to-[#DDC57A] transition-all"
             >
               Xem tất cả bài viết
             </button>

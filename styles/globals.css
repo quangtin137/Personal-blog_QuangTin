@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Color Palette */
+:root {
+  --color-primary: #D34E4E;
+  --color-secondary: #F9E7B2;
+  --color-accent: #DDC57A;
+  --color-tertiary: #CE7E5A;
+  --color-bg-base: #E8DCC8;
+  --color-bg-alt: #DFD1BB;
+  --color-bg-overlay: #D6CAB8;
+}
+
 /* Custom animations */
 @layer utilities {
   .animate-fade-in {
@@ -26,6 +37,19 @@
   
   .animate-pulse-slow {
     animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Background utility classes */
+  .bg-warm-base {
+    @apply bg-[#E8DCC8];
+  }
+
+  .bg-warm-alt {
+    @apply bg-[#DFD1BB];
+  }
+
+  .bg-warm-overlay {
+    @apply bg-[#D6CAB8];
   }
 }
 
@@ -86,21 +110,29 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #DFD1BB;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #3b82f6, #9333ea);
+  background: linear-gradient(to bottom, #D34E4E, #CE7E5A);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #2563eb, #7c3aed);
+  background: linear-gradient(to bottom, #C93E3E, #B86E4A);
 }
 
 /* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
+}
+
+/* Background gradient - Darker Warm */
+body {
+  background: linear-gradient(135deg, #D6CAB8 0%, #CABFB0 50%, #BDB2A8 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: #2d2d2d;
 }
 
 /* Code block styling */
@@ -110,15 +142,43 @@ pre code {
   overflow-x: auto;
   font-size: 0.875rem;
   line-height: 1.5;
+  background: #2d2d2d;
+  color: #F9E7B2;
+  border-left: 4px solid #D34E4E;
+  border-radius: 0.5rem;
 }
 
 /* Selection styling */
 ::selection {
-  background-color: #3b82f6;
-  color: white;
+  background-color: #D34E4E;
+  color: #F9E7B2;
 }
 
 ::-moz-selection {
-  background-color: #3b82f6;
-  color: white;
+  background-color: #D34E4E;
+  color: #F9E7B2;
+}
+
+/* Link styling */
+a {
+  @apply transition-colors duration-300;
+}
+
+a:hover {
+  @apply text-[#D34E4E];
+}
+
+/* Button base styles */
+button {
+  @apply transition-all duration-300;
+}
+
+/* Card shadows with warm tone */
+.card {
+  @apply bg-white shadow-md hover:shadow-lg transition-shadow duration-300;
+}
+
+/* Input styling */
+input, textarea, select {
+  @apply bg-white border-2 border-[#DFD1BB] focus:border-[#D34E4E] focus:outline-none transition-colors duration-300;
 }

@@ -14,8 +14,8 @@ export default function Navbar() {
   const navLinkClass = (path) => {
     const baseClass = "relative transition-all duration-300 group"
     return isActive(path)
-      ? `${baseClass} text-blue-600 font-semibold`
-      : `${baseClass} text-gray-700 hover:text-blue-600`
+      ? `${baseClass} text-[#D34E4E] font-semibold`
+      : `${baseClass} text-gray-700 hover:text-[#D34E4E]`
   }
   
   return (
@@ -24,10 +24,10 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#D34E4E] to-[#CE7E5A] rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
               <span className="text-white font-bold text-xl">QT</span>
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hidden sm:block">
+            <span className="text-xl font-bold bg-gradient-to-r from-[#D34E4E] to-[#CE7E5A] bg-clip-text text-transparent hidden sm:block">
               Blog Lập Trình Mạng
             </span>
           </Link>
@@ -36,15 +36,19 @@ export default function Navbar() {
           <div className="hidden md:flex space-x-8">
             <Link href="/" className={navLinkClass('/')}>
               <span>Trang chủ</span>
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#D34E4E] to-[#CE7E5A] group-hover:w-full transition-all duration-300"></span>
             </Link>
             <Link href="/blog" className={navLinkClass('/blog')}>
               <span>Blog</span>
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#D34E4E] to-[#CE7E5A] group-hover:w-full transition-all duration-300"></span>
+            </Link>
+            <Link href="/certifications" className={navLinkClass('/certifications')}>
+              <span>Chứng chỉ</span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#D34E4E] to-[#CE7E5A] group-hover:w-full transition-all duration-300"></span>
             </Link>
             <Link href="/profile" className={navLinkClass('/profile')}>
               <span>Giới thiệu</span>
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#D34E4E] to-[#CE7E5A] group-hover:w-full transition-all duration-300"></span>
             </Link>
           </div>
           
@@ -70,21 +74,28 @@ export default function Navbar() {
             <div className="flex flex-col space-y-4">
               <Link
                 href="/"
-                className={`${isActive('/') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors px-4 py-2 rounded-lg hover:bg-gray-50`}
+                className={`${isActive('/') ? 'text-[#D34E4E] font-semibold' : 'text-gray-700'} hover:text-[#D34E4E] transition-colors px-4 py-2 rounded-lg hover:bg-[#F9E7B2]/30`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Trang chủ
               </Link>
               <Link
                 href="/blog"
-                className={`${isActive('/blog') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors px-4 py-2 rounded-lg hover:bg-gray-50`}
+                className={`${isActive('/blog') ? 'text-[#D34E4E] font-semibold' : 'text-gray-700'} hover:text-[#D34E4E] transition-colors px-4 py-2 rounded-lg hover:bg-[#F9E7B2]/30`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Blog
               </Link>
               <Link
+                href="/certifications"
+                className={`${isActive('/certifications') ? 'text-[#D34E4E] font-semibold' : 'text-gray-700'} hover:text-[#D34E4E] transition-colors px-4 py-2 rounded-lg hover:bg-[#F9E7B2]/30`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Chứng chỉ
+              </Link>
+              <Link
                 href="/profile"
-                className={`${isActive('/profile') ? 'text-blue-600 font-semibold' : 'text-gray-700'} hover:text-blue-600 transition-colors px-4 py-2 rounded-lg hover:bg-gray-50`}
+                className={`${isActive('/profile') ? 'text-[#D34E4E] font-semibold' : 'text-gray-700'} hover:text-[#D34E4E] transition-colors px-4 py-2 rounded-lg hover:bg-[#F9E7B2]/30`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Giới thiệu
