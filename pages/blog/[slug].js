@@ -101,7 +101,7 @@ export default function Post({ postData, prevPost, nextPost, seriesPosts }) {
           <div className="mb-8 bg-card-dark rounded-2xl p-6 border border-card-border animate-slide-up">
             <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span>📚</span>
-              Bài viết trong series "{postData.series}"
+              Bài viết trong series {postData.series}
             </h3>
             <div className="space-y-2">
               {seriesPosts.map((post, index) => (
