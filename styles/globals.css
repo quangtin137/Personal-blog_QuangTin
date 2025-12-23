@@ -5,6 +5,115 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loading-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.animate-loading-bar {
+  animation: loading-bar 1s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.4s ease-out;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6366f1;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #818cf8;
+}
+
+/* Page Transition */
+.page-transition {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Hover Effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+}
+
+/* Focus States */
+*:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background-color: #6366f1;
+  color: white;
+}
+
 /* Custom Color Palette - DevBlog Dark Theme */
 :root {
   --color-primary: #137fec;
@@ -164,6 +273,184 @@ pre code {
   border-left: 4px solid var(--color-primary);
   border-radius: 0.5rem;
   font-family: 'JetBrains Mono', monospace;
+}
+
+/* Markdown Content Styling */
+.markdown-body {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #d1d5db;
+}
+
+.markdown-body h1 {
+  font-size: 2.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  color: white;
+  font-weight: 800;
+}
+
+.markdown-body h2 {
+  font-size: 2rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: white;
+  font-weight: 700;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-card-border);
+}
+
+.markdown-body h3 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: white;
+  font-weight: 600;
+}
+
+.markdown-body h4 {
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: white;
+  font-weight: 600;
+}
+
+.markdown-body p {
+  margin-bottom: 1.5rem;
+  color: var(--color-secondary);
+}
+
+.markdown-body strong {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.markdown-body code {
+  background: rgba(19, 127, 236, 0.1);
+  color: var(--color-primary);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+}
+
+.markdown-body pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 1.5rem;
+  border-radius: 12px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  line-height: 1.6;
+  border: 1px solid var(--color-card-border);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.markdown-body pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+  color: var(--color-secondary);
+}
+
+.markdown-body li {
+  margin-bottom: 0.75rem;
+}
+
+.markdown-body blockquote {
+  border-left: 4px solid var(--color-primary);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  color: var(--color-secondary);
+  font-style: italic;
+  background: rgba(19, 127, 236, 0.05);
+  padding: 1rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  display: block;
+}
+
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid var(--color-card-border);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.markdown-body th {
+  background: var(--color-card-dark);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.markdown-body tr:nth-child(even) {
+  background: rgba(28, 35, 45, 0.5);
+}
+
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
+.markdown-body a {
+  color: var(--color-primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s;
+}
+
+.markdown-body a:hover {
+  border-bottom-color: var(--color-primary);
+}
+
+.markdown-body hr {
+  border: none;
+  border-top: 2px solid var(--color-card-border);
+  margin: 2rem 0;
+}
+
+/* Responsive markdown */
+@media (max-width: 768px) {
+  .markdown-body {
+    font-size: 1rem;
+  }
+
+  .markdown-body h1 {
+    font-size: 2rem;
+  }
+
+  .markdown-body h2 {
+    font-size: 1.6rem;
+  }
+
+  .markdown-body h3 {
+    font-size: 1.3rem;
+  }
+
+  .markdown-body pre {
+    padding: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .markdown-body table {
+    font-size: 0.9rem;
+  }
 }
 
 /* Selection styling */
