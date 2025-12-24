@@ -27,15 +27,49 @@ Click button menu xổ ra? JS.
 Scroll ảnh tự load thêm? JS.
 Form validation? JS.
 
-## So sánh nhanh: Java vs JavaScript
+## So sánh chi tiết: Java vs JavaScript
 
-| | Java | JavaScript |
-|---|------|------------|
-| **Cú pháp** | Nghiêm ngặt, dài | Linh hoạt, ngắn |
-| **Kết quả** | Console/Backend | Thấy ngay trên web |
-| **Kiểu dữ liệu** | Phải khai báo | Tự động |
-| **Học curve** | Khó, chậm | Dễ, nhanh |
-| **Chạy ở đâu** | Server, desktop | Browser, server (Node.js) |
+### Cùng một bài toán: Cộng 2 số
+
+**Java** (5 dòng tối thiểu):
+```java
+public class Calculator {
+    public static void main(String[] args) {
+        int a = 5;
+        int b = 10;
+        int sum = a + b;
+        System.out.println("Tổng: " + sum);
+    }
+}
+```
+
+**JavaScript** (3 dòng):
+```javascript
+let a = 5;
+let b = 10;
+console.log("Tổng:", a + b);
+```
+
+Hay thậm chí **1 dòng**:
+```javascript
+console.log("Tổng:", 5 + 10);
+```
+
+### Bảng so sánh toàn diện
+
+| Tiêu chí | Java | JavaScript |
+|----------|------|------------|
+| **Cú pháp** | Nghiêm ngặt, dài, buộc phải có structure | Linh hoạt, ngắn gọn, tự do |
+| **Khai báo biến** | `int age = 20;` (phải chỉ rõ kiểu) | `let age = 20;` (tự động nhận diện) |
+| **Kết quả** | Console hoặc Backend API | Thấy trực quan trên web browser |
+| **Kiểu dữ liệu** | Strongly typed (phải khai báo) | Dynamically typed (tự động) |
+| **Học curve** | Khó, mất thời gian, nhưng nền tảng vững | Dễ, nhanh, nhưng dễ code "bẩn" |
+| **Compile** | Phải compile trước (`javac`) | Không cần, chạy luôn |
+| **Chạy ở đâu** | Server, Desktop app, Android | Browser (frontend) + Node.js (backend) |
+| **Phát hiện lỗi** | Compile time (sớm) | Runtime (muộn, nguy hiểm hơn) |
+| **Performance** | Rất nhanh (compiled) | Chậm hơn (interpreted) |
+| **Use case chính** | Backend API, Enterprise app, Android | Frontend website, Web app |
+| **Thị trường việc làm** | Backend developer, Enterprise | Full-stack, Frontend developer |
 
 ## JS cho kết quả nhanh điên cuồng
 

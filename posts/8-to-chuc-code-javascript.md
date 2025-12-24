@@ -5,11 +5,73 @@ series: "HÀNH TRÌNH HỌC JAVA & JAVASCRIPT"
 tags: [javascript, clean code, modules, organization]
 ---
 
-Dự án đầu tiên: một file `script.js` dài... **800 dòng**.
+Dự án web đầu tiên của tôi: Một trang bán hàng online đơn giản.
 
-Mọi thứ ở đó: xử lý form, animation, API call, validation. Lúc viết thấy "tiện", lúc sửa muốn khóc.
+Tôi tạo một file duy nhất: `script.js`
 
-**Mất 2 giờ chỉ để tìm 1 function.**
+Trong đó có:
+- Code xử lý đăng nhập (50 dòng)
+- Code xử lý giỏ hàng (150 dòng)
+- Code hiển thị sản phẩm (100 dòng)
+- Code gọi API (120 dòng)
+- Code animation (80 dòng)
+- Code validation form (100 dòng)
+- Code thanh toán (200 dòng)
+
+**Tổng cộng: 800 dòng trong 1 file!**
+
+Lúc viết, tôi nghĩ: "Tiện quá, mọi thứ ở một chỗ!"
+
+Nhưng 1 tuần sau, khi có bug:
+- Tôi phải scroll cả ngàn dòng để tìm function
+- Ctrl+F cũng không giúp được gì vì có hàng chục function tên giống nhau
+- Đọc code như đọc tiểu thuyết dài 800 trang không có mục lục
+
+**Tôi mất 2 giờ chỉ để TÌM được function xử lý giỏ hàng!**
+
+Deadline sắp tới. Tôi ngồi khóc thầm.
+
+## Vấn đề thực sự: "Bãi rác code"
+
+```javascript
+// script.js - 800 dòng
+
+// Line 1-50: Login
+function login() { /* ... */ }
+function validateLogin() { /* ... */ }
+
+// Line 51-200: Cart
+function addToCart() { /* ... */ }
+function removeFromCart() { /* ... */ }
+function calculateTotal() { /* ... */ }
+
+// Line 201-300: Products
+function displayProducts() { /* ... */ }
+function filterProducts() { /* ... */ }
+
+// Line 301-450: API
+function fetchProducts() { /* ... */ }
+function fetchUserData() { /* ... */ }
+
+// Line 451-550: Animation  
+function slideIn() { /* ... */ }
+function fadeOut() { /* ... */ }
+
+// Line 551-650: Validation
+function validateEmail() { /* ... */ }
+function validatePhone() { /* ... */ }
+
+// Line 651-800: Payment
+function processPayment() { /* ... */ }
+function generateInvoice() { /* ... */ }
+```
+
+**Hậu quả thảm khốc:**
+1. Scroll mỏi tay
+2. Tìm function như đi mò kim đáy bể
+3. 2 người cùng sửa file → Git conflict khủng khiếp
+4. Không test được từng phần riêng lẻ
+5. Muốn tái sử dụng code? Copy-paste thôi!
 
 ## Vấn đề: "Một file cho tất cả"
 

@@ -1,11 +1,11 @@
 ---
-title: "Code chạy được ≠ Code tốt: Bài học từ code 'xấu'"
+title: "Code chạy được khác Code tốt: Bài học từ code 'xấu'"
 date: "2025-12-17"
 series: "HÀNH TRÌNH HỌC JAVA & JAVASCRIPT"
 tags: [java, clean code, best practices, refactoring]
 ---
 
-**3 giờ sáng**. Tôi nhìn code mình viết 2 tuần trước... không hiểu gì cả.
+**3 giờ sáng**. Tôi mở lại code mình viết 2 tuần trước để fix bug. Nhìn vào màn hình, tôi... **không hiểu gì cả**.
 
 ```java
 public class X {
@@ -14,9 +14,38 @@ public class X {
 }
 ```
 
-`a` là gì? `b` là gì? `c` tính cái quái gì? Deadline sắp tới. Tôi muốn khóc.
+Một đống câu hỏi trong đầu:
+- Class `X` là cái gì?
+- `a` là gì? Đơn vị là gì?
+- `b` là gì? Tại sao lại là 20?
+- `c` tính cái quái gì? Tại sao phải lớn hơn 25?
+- Vòng for này in ra để làm gì?
 
-**Lúc đó tôi nhận ra: code không chỉ viết cho máy, mà còn cho người – kể cả tương lai của chính mình.**
+Deadline sắp tới. Bug chưa fix được. Tôi ngồi đọc lại code của chính mình mà như người lạ. **Tôi muốn khóc.**
+
+**Lúc đó tôi nhận ra một chân lý đau đớn:**
+
+> "Code không chỉ viết cho máy chạy. Code còn viết cho con người đọc – kể cả chính bản thân tương lai của mình."
+
+Nếu refactor lại:
+
+```java
+public class DiscountCalculator {
+    private int basePrice = 10;
+    private int taxAmount = 20;
+    private int totalAmount = basePrice + taxAmount;
+    
+    public void printEligibleDays() {
+        if (totalAmount > 25) {
+            for (int day = 0; day < totalAmount; day++) {
+                System.out.println("Day " + day + " is eligible for discount");
+            }
+        }
+    }
+}
+```
+
+**BÂY GIỜ MỚI RÕ RÀNG!** Đọc là hiểu ngay logic.
 
 ## Quy tắc 1: Tên biến phải "nói chuyện"
 

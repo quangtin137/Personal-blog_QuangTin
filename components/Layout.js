@@ -60,9 +60,6 @@ export default function Layout({ children }) {
                 <a href="mailto:quangtin13072004@gmail.com" className="text-text-secondary hover:text-primary transition-colors text-sm">
                   Email
                 </a>
-                <a href="#" className="text-text-secondary hover:text-primary transition-colors text-sm">
-                  RSS Feed
-                </a>
               </div>
             </div>
 

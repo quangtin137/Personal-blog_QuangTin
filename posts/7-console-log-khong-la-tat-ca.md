@@ -84,30 +84,109 @@ console.log({ success, data, error });
 
 Chỉ log **input** và **output** – đủ để debug!
 
-## Console nâng cao
+## Console nâng cao – Những gì tôi ước biết sớm hơn
+
+### 1. console.group() – Tổ chức log gọn gàng
 
 ```javascript
-// Group logs
-console.group("User Login");
-console.log("Username:", user);
-console.log("Time:", new Date());
+console.group("🔐 User Login Process");
+console.log("Step 1: Validate username");
+console.log("Username:", username);
+console.log("Step 2: Check password");
+console.log("Password length:", password.length);
+console.log("Step 3: Generate token");
+console.log("Token:", token);
 console.groupEnd();
 
-// Table format
-console.table([
-    { name: "Tin", age: 21 },
-    { name: "An", age: 22 }
-]);
-
-// Timer
-console.time("Process");
-// ... code ...
-console.timeEnd("Process");  // In: Process: 123ms
-
-// Warning & Error
-console.warn("⚠️ Deprecated function!");
-console.error("❌ API failed!");
+console.group("📧 Send Email");
+console.log("To:", email);
+console.log("Subject:", subject);
+console.groupEnd();
 ```
+
+**Output sẽ gọn gàng như folder!** Click mở/đóng từng group.
+
+### 2. console.table() – Hiển thị data như bảng Excel
+
+```javascript
+let students = [
+    { id: 1, name: "Quang Tín", grade: 8.5, major: "IT" },
+    { id: 2, name: "Minh An", grade: 9.0, major: "CS" },
+    { id: 3, name: "Thu Hà", grade: 7.5, major: "IT" }
+];
+
+console.table(students);
+```
+
+**Output**: Bảng đẹp, dễ nhìn hơn log thường gấp 100 lần!
+
+```
+┌─────────┬────┬────────────┬───────┬────────┐
+│ (index) │ id │    name    │ grade │ major  │
+├─────────┼────┼────────────┼───────┼────────┤
+│    0    │  1 │ 'Quang Tín' │  8.5  │  'IT'  │
+│    1    │  2 │  'Minh An'  │  9.0  │  'CS'  │
+│    2    │  3 │  'Thu Hà'   │  7.5  │  'IT'  │
+└─────────┴────┴────────────┴───────┴────────┘
+```
+
+### 3. console.time() – Đo performance
+
+```javascript
+console.time("Fetch API");
+fetch('https://api.example.com/data')
+    .then(response => response.json())
+    .then(data => {
+        console.timeEnd("Fetch API");  // Output: Fetch API: 234ms
+        console.log("Data:", data);
+    });
+```
+
+Biết chính xác function nào chạy chậm!
+
+### 4. console.warn() & console.error() – Phân loại log
+
+```javascript
+// Cảnh báo (màu vàng)
+console.warn("⚠️ Function này sắp bị deprecated. Dùng newFunction() thay thế!");
+
+// Lỗi nghiêm trọng (màu đỏ)
+console.error("❌ Không kết nối được database!");
+console.error("Error details:", errorObject);
+
+// Log thường (màu trắng)
+console.log("ℹ️ App started successfully");
+```
+
+Phân loại màu giúp debug nhanh hơn!
+
+### 5. console.assert() – Test nhanh ngay trong code
+
+```javascript
+let age = 15;
+console.assert(age >= 18, "❌ Lỗi: Tuổi phải >= 18!");
+// Chỉ log nếu điều kiện SAI
+```
+
+### 6. console.trace() – Xem call stack
+
+```javascript
+function a() {
+    b();
+}
+
+function b() {
+    c();
+}
+
+function c() {
+    console.trace("Đây là call stack");
+}
+
+a();
+```
+
+**Output**: Hiển thị đường đi của function: `a() → b() → c()`
 
 ## Bài học
 

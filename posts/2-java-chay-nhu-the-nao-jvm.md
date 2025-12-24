@@ -13,26 +13,72 @@ Code chạy ngon trên máy tôi nhưng lỗi trên máy bạn. Lúc đó tôi m
 
 ## Java không chạy trực tiếp trên máy
 
-C/C++ compile ra .exe chỉ chạy trên Windows. Muốn chạy Mac/Linux phải compile lại. **Nhưng Java khác!**
+C/C++ compile ra file `.exe` (Windows) hoặc binary (Linux/Mac). File này chứa **mã máy** (machine code) cụ thể cho từng hệ điều hành:
+- File `.exe` Windows **chỉ chạy trên Windows**
+- Binary Linux **chỉ chạy trên Linux**
+- Muốn chạy trên Mac? Phải compile lại toàn bộ!
 
-### Workflow của Java:
-```
-Source Code (.java)
-    ↓ [javac compile]
-Bytecode (.class)  ← Ngôn ngữ "trung gian"
-    ↓ [JVM execute]
-Kết quả chạy
+**Nhưng Java khác hoàn toàn!**
+
+### Workflow của Java – Giải mã từng bước:
+
+#### Bước 1: Viết code (.java)
+```java
+// HelloWorld.java
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello World");
+    }
+}
 ```
 
-**Bytecode** là "esperanto" của lập trình – không phải ngôn ngữ máy, không phải Java thuần.
+#### Bước 2: Compile thành Bytecode (.class)
+```bash
+javac HelloWorld.java
+# Tạo ra file: HelloWorld.class
+```
+
+**Bytecode** không phải mã máy, không phải Java thuần. Nó là "ngôn ngữ trung gian" mà chỉ JVM hiểu được.
+
+Nếu mở file `.class` ra xem:
+```
+CA FE BA BE 00 00 00 3D 00 1D 0A 00 06 00 0F 09...
+```
+
+Đây là bytecode – giống như "esperanto" của lập trình!
+
+#### Bước 3: JVM thực thi bytecode
+```bash
+java HelloWorld
+# Output: Hello World
+```
 
 ### JVM: Người phiên dịch thần kỳ
 
-- JVM Windows → dịch ra mã máy Windows
-- JVM Mac → dịch ra mã máy macOS  
-- JVM Linux → dịch ra mã máy Linux
+JVM (Java Virtual Machine) = **Máy ảo** đọc bytecode và chuyển thành mã máy thực:
 
-Cùng file `.class`, chạy mọi nơi có JVM. **"Write once, run anywhere"!**
+- **JVM trên Windows**: Đọc bytecode → Dịch ra mã máy Windows → CPU thực thi
+- **JVM trên Mac**: Đọc bytecode → Dịch ra mã máy macOS → CPU thực thi
+- **JVM trên Linux**: Đọc bytecode → Dịch ra mã máy Linux → CPU thực thi
+
+**Cùng một file `HelloWorld.class`, copy sang máy nào cũng chạy được** (miễn có JVM)!
+
+Đây chính là "**Write once, run anywhere**"!
+
+### Ví dụ thực tế
+
+Tôi code app quản lý sinh viên trên Windows:
+```bash
+javac StudentManager.java
+# Tạo ra: StudentManager.class
+```
+
+Copy file `.class` sang:
+- ✅ Laptop Mac của bạn → Chạy OK
+- ✅ Server Linux trên cloud → Chạy OK  
+- ✅ Máy Windows khác → Chạy OK
+
+**KHÔNG cần compile lại!**
 
 ## JDK vs JRE vs JVM
 

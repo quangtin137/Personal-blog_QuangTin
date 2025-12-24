@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout'
 import { getAllPostIds, getPostData, getSortedPostsData } from '@/lib/posts'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export async function getStaticPaths() {
   const paths = getAllPostIds()
@@ -17,9 +18,9 @@ export async function getStaticProps({ params }) {
   // Find current post index
   const currentIndex = allPosts.findIndex(post => post.id === params.slug)
   
-  // Get prev and next posts
-  const prevPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null
-  const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null
+  // Get prev and next posts (posts sorted oldest-first: 1-9)
+  const prevPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null  // Previous = older post
+  const nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null  // Next = newer post
   
   // Get all posts in the same series (if exists)
   const seriesPosts = postData.series 
@@ -39,6 +40,7 @@ export async function getStaticProps({ params }) {
 export default function Post({ postData, prevPost, nextPost, seriesPosts }) {
   // Calculate reading time (rough estimate: 200 words per minute)
   const readingTime = Math.ceil(postData.contentHtml.split(' ').length / 200)
+  
   return (
     <Layout>
       <article className="min-h-screen bg-background-dark">
@@ -142,23 +144,25 @@ export default function Post({ postData, prevPost, nextPost, seriesPosts }) {
 
             {/* Post Navigation */}
             {(prevPost || nextPost) && (
-              <nav className="mt-8 grid md:grid-cols-2 gap-4">
-                {prevPost && (
+              <nav className="mt-8 flex justify-between gap-4">
+                {prevPost ? (
                   <Link 
                     href={`/blog/${prevPost.id}`}
-                    className="bg-card-dark border border-card-border rounded-xl p-4 hover:border-primary transition-all group"
+                    className="bg-card-dark border border-card-border rounded-xl p-4 hover:border-primary transition-all group flex-1 max-w-md"
                   >
                     <span className="text-sm text-text-secondary mb-1 block">← Bài trước</span>
-                    <span className="text-white font-semibold group-hover:text-primary">{prevPost.title}</span>
+                    <span className="text-white font-semibold group-hover:text-primary block">{prevPost.title}</span>
                   </Link>
+                ) : (
+                  <div className="flex-1"></div>
                 )}
                 {nextPost && (
                   <Link 
                     href={`/blog/${nextPost.id}`}
-                    className="bg-card-dark border border-card-border rounded-xl p-4 hover:border-primary transition-all group text-right ml-auto"
+                    className="bg-card-dark border border-card-border rounded-xl p-4 hover:border-primary transition-all group flex-1 max-w-md text-right"
                   >
                     <span className="text-sm text-text-secondary mb-1 block">Bài tiếp →</span>
-                    <span className="text-white font-semibold group-hover:text-primary">{nextPost.title}</span>
+                    <span className="text-white font-semibold group-hover:text-primary block">{nextPost.title}</span>
                   </Link>
                 )}
               </nav>
@@ -182,11 +186,16 @@ export default function Post({ postData, prevPost, nextPost, seriesPosts }) {
               {/* Author card */}
               <div className="bg-card-dark rounded-xl shadow-lg p-6 border border-card-border animate-slide-up">
                 <div className="text-center mb-4">
-                  <div className="w-20 h-20 bg-gradient-to-br from-primary to-blue-500 rounded-full mx-auto mb-3 flex items-center justify-center text-white text-2xl font-bold">
-                    QT
+                  <div className="relative w-20 h-20 rounded-full mx-auto mb-3 overflow-hidden border-2 border-primary">
+                    <Image
+                      src="/avatar.png"
+                      alt="Quang Tín"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   <h4 className="font-bold text-white">Quang Tín</h4>
-                  <p className="text-sm text-text-secondary">Sinh viên Lập Trình Mạng</p>
+                  <p className="text-sm text-text-secondary">Đam mê lập trình & chia sẻ kiến thức</p>
                 </div>
                 <Link 
                   href="/profile"

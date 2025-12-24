@@ -5,7 +5,7 @@ series: "HÀNH TRÌNH HỌC JAVA & JAVASCRIPT"
 tags: [java, debug, exception, error]
 ---
 
-Màn hình đỏ lòm. Hàng chục dòng chữ. Tôi chỉ muốn... tắt máy.
+Lần đầu gặp lỗi Java, màn hình tôi đỏ lòm. Hàng chục dòng chữ trắng trên đen. Console như đang... la mắng tôi.
 
 ```
 Exception in thread "main" java.lang.NullPointerException
@@ -14,7 +14,28 @@ Exception in thread "main" java.lang.NullPointerException
     at MyClass.main(MyClass.java:5)
 ```
 
-**NullPointerException** – cái tên nghe đã thấy sợ. Nhưng sau 100 lần gặp, tôi nhận ra: **lỗi không phải kẻ thù, lỗi là thầy**.
+Tôi chỉ muốn... **tắt máy đi ngủ**. 
+
+"NullPointerException" – cái tên này nghe ghê gớm quá. "Exception" là gì? "Null" là gì? "Pointer" là gì? Tôi không hiểu gì cả.
+
+Nhưng sau 100 lần gặp lỗi này (không phóng đại!), tôi nhận ra một sự thật:
+
+**Lỗi không phải kẻ thù. Lỗi là người thầy.**
+
+Mỗi lần debug thành công = hiểu Java hơn một chút. Giờ đây, khi thấy màn hình đỏ, tôi không sợ nữa. Tôi biết cách "đọc" nó.
+
+## Câu chuyện thực tế
+
+Tôi đang code app quản lý sinh viên. Chạy chương trình, nhập tên sinh viên, nhấn "Save"... BOOM!
+
+```
+Exception in thread "main" java.lang.NullPointerException: Cannot invoke "String.length()" because "this.student.name" is null
+    at StudentManager.validateName(StudentManager.java:45)
+    at StudentManager.saveStudent(StudentManager.java:30)
+    at StudentManager.main(StudentManager.java:15)
+```
+
+Lần đầu thấy, tôi hoảng loạn. Nhưng giờ tôi biết cách đọc từng dòng.
 
 ## 2 loại lỗi trong Java
 
