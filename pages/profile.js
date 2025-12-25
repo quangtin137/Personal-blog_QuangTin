@@ -71,7 +71,7 @@ export default function Profile() {
               </p>
               <p className="text-text-secondary leading-relaxed mb-4">
                 Ngoài các hoạt động học thuật, tôi có nhiều sở thích và hoạt động giúp tôi thư giãn và cân bằng cuộc sống. 
-                Tôi là một người yêu âm nhạc 🎵, đặc biệt là pop, hip-hop và R&B. Tôi cũng thích chơi game 🎮, điều này giúp 
+                Tôi là một người yêu âm nhạc 🎵, đặc biệt ballad và R&B. Tôi cũng thích chơi game 🎮, điều này giúp 
                 tôi thư giãn sau một ngày học tập dài.
               </p>
               <p className="text-text-secondary leading-relaxed mb-4">

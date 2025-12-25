@@ -1,7 +1,27 @@
 import Navbar from './Navbar'
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
 
 export default function Layout({ children }) {
+  const [showScrollTop, setShowScrollTop] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Hiện nút khi scroll xuống 300px
+      setShowScrollTop(window.scrollY > 300)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-background-dark text-white">
       <Navbar />
@@ -95,6 +115,32 @@ export default function Layout({ children }) {
           </div>
         </div>
       </footer>
+
+      {/* Scroll to Top Button */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-primary hover:bg-primary-light text-white shadow-lg shadow-primary/25 flex items-center justify-center transition-all duration-300 hover:scale-110 ${
+          showScrollTop 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 translate-y-10 pointer-events-none'
+        }`}
+        aria-label="Scroll to top"
+        title="Về đầu trang"
+      >
+        <svg 
+          className="w-6 h-6" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2} 
+            d="M5 10l7-7m0 0l7 7m-7-7v18" 
+          />
+        </svg>
+      </button>
     </div>
   )
 }

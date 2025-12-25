@@ -124,4 +124,4 @@ Hiểu JVM → hiểu tại sao chậm → biết tối ưu.
 
 ---
 
-*Bài tiếp: Code chạy được ≠ Code tốt!* 🧹
+*Bài tiếp: Code chạy được khác Code tốt!* 🧹
