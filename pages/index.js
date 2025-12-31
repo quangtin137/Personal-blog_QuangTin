@@ -59,7 +59,7 @@ export default function Home() {
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary via-blue-500 to-purple-500 opacity-50 animate-border-flow"></div>
                     <div className="absolute inset-[2px] rounded-2xl bg-background-dark"></div>
                     <p className="relative text-2xl md:text-3xl font-bold text-center bg-gradient-to-r from-primary via-blue-400 to-purple-400 bg-clip-text text-transparent animate-shimmer">
-                      <span className="inline-block hover:animate-glitch">"{t('slogan')}"</span>
+                      <span className="inline-block hover:animate-glitch">&ldquo;{t('slogan')}&rdquo;</span>
                     </p>
                   </div>
                 </div>
