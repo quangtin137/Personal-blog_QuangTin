@@ -2,6 +2,8 @@ import Layout from '@/components/Layout'
 import Link from 'next/link'
 import { getSortedPostsData } from '@/lib/posts'
 import { useState, useMemo } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { getTranslation } from '@/lib/translations'
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
@@ -13,6 +15,9 @@ export async function getStaticProps() {
 }
 
 export default function Blog({ allPostsData }) {
+  const { language } = useLanguage()
+  const t = (key) => getTranslation(language, key)
+  
   const [selectedSeries, setSelectedSeries] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -38,11 +43,11 @@ export default function Blog({ allPostsData }) {
           <div className="text-center mb-12 pt-12">
             <h1 className="text-5xl font-bold mb-4 animate-fade-in">
               <span className="bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
-                📝 Blog của tôi
+                📝 {t('blogTitle')}
               </span>
             </h1>
             <p className="text-text-secondary text-lg animate-slide-up">
-              Chia sẻ kiến thức và kinh nghiệm trong hành trình học lập trình - {allPostsData.length} bài viết
+              {t('blogSubtitle')} - {allPostsData.length} {t('blogPosts')}
             </p>
           </div>
 
@@ -53,7 +58,7 @@ export default function Blog({ allPostsData }) {
               <div className="relative max-w-2xl mx-auto">
                 <input
                   type="text"
-                  placeholder="🔍 Tìm kiếm bài viết theo tiêu đề, tags..."
+                  placeholder={`🔍 ${t('searchPlaceholder')}`}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full px-6 py-4 rounded-xl border-2 border-card-border bg-background-dark text-white placeholder-text-secondary focus:border-primary focus:outline-none transition-colors text-lg"
@@ -73,7 +78,7 @@ export default function Blog({ allPostsData }) {
             <div className="mb-4">
               <label className="block text-white font-semibold mb-3 flex items-center gap-2">
                 <span className="text-xl">📚</span>
-                Lọc theo Series:
+                {t('filterBySeries')}:
               </label>
               <div className="flex flex-wrap gap-2">
                 {allSeries.map(series => (
@@ -85,7 +90,7 @@ export default function Blog({ allPostsData }) {
                         : 'bg-background-dark text-text-secondary hover:text-white border border-card-border hover:border-primary'
                       }`}
                   >
-                    {series === 'all' ? 'Tất cả' : series}
+                    {series === 'all' ? t('allSeries') : series}
                   </button>
                 ))}
               </div>
@@ -93,8 +98,8 @@ export default function Blog({ allPostsData }) {
 
             {/* Results Count */}
             <p className="text-text-secondary text-sm">
-              Hiển thị <strong className="text-primary">{filteredPosts.length}</strong> bài viết
-              {selectedSeries !== 'all' && ` trong series "${selectedSeries}"`}
+              {t('showing')} <strong className="text-primary">{filteredPosts.length}</strong> {t('blogPosts')}
+              {selectedSeries !== 'all' && ` ${t('inSeries')} "${selectedSeries}"`}
             </p>
           </div>
 

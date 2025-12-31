@@ -2,8 +2,13 @@ import Layout from '@/components/Layout'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { getTranslation } from '@/lib/translations'
 
 export default function Certifications() {
+  const { language } = useLanguage()
+  const t = (key) => getTranslation(language, key)
+  
   const [selectedCert, setSelectedCert] = useState(null)
 
   const certifications = [
@@ -52,11 +57,11 @@ export default function Certifications() {
         <div className="text-center mb-12 pt-8">
           <h1 className="text-5xl font-bold mb-4">
             <span className="bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
-              Chứng chỉ của tôi
+              {t('certificationsTitle')}
             </span>
           </h1>
           <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-            Các chứng chỉ và khóa học tôi đã hoàn thành trong hành trình học tập và phát triển
+            {t('certificationsSubtitle')}
           </p>
         </div>
 
@@ -65,17 +70,17 @@ export default function Certifications() {
           <div className="bg-card-dark rounded-xl shadow-lg p-6 border border-card-border text-center hover:shadow-xl transition-shadow">
             <div className="text-4xl mb-2">🏆</div>
             <div className="text-3xl font-bold text-primary mb-1">{certifications.length}</div>
-            <div className="text-text-secondary">Chứng chỉ</div>
+            <div className="text-text-secondary">{t('certificationsCount')}</div>
           </div>
           <div className="bg-card-dark rounded-xl shadow-lg p-6 border border-card-border text-center hover:shadow-xl transition-shadow">
             <div className="text-4xl mb-2">🔗</div>
             <div className="text-3xl font-bold text-cyan-400 mb-1">{certifications.filter(c => c.certificate).length}</div>
-            <div className="text-text-secondary">Chứng chỉ có Certificate</div>
+            <div className="text-text-secondary">{t('withCertificate')}</div>
           </div>
           <div className="bg-card-dark rounded-xl shadow-lg p-6 border border-card-border text-center hover:shadow-xl transition-shadow">
             <div className="text-4xl mb-2">⭐</div>
             <div className="text-3xl font-bold text-purple-400 mb-1">2025</div>
-            <div className="text-text-secondary">Năm gần nhất</div>
+            <div className="text-text-secondary">{t('recentYear')}</div>
           </div>
         </div>
 

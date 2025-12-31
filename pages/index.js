@@ -1,10 +1,15 @@
 import Layout from '@/components/Layout'
+import TechBackground from '@/components/TechBackground'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { useLanguage } from '../contexts/LanguageContext'
+import { getTranslation } from '../lib/translations'
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false)
+  const { language } = useLanguage()
+  const t = (key) => getTranslation(language, key)
 
   useEffect(() => {
     setIsVisible(true)
@@ -12,9 +17,23 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-background-dark">
+      <div className="min-h-screen bg-background-dark relative overflow-hidden">
+        {/* Tech Background with Particles */}
+        <TechBackground />
+        
+        {/* Animated Grid Background */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] pointer-events-none"></div>
+        
+        {/* Gradient Orbs */}
+        <div className="absolute top-20 right-10 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-float"></div>
+        <div className="absolute bottom-20 left-10 w-96 h-96 bg-blue-500/20 rounded-full blur-[120px] animate-float" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-purple-500/20 rounded-full blur-[120px] animate-float" style={{ animationDelay: '2s' }}></div>
         {/* Hero Section - 2/3 Content, 1/3 Portrait */}
-        <section className="relative min-h-screen flex items-center py-12 px-4 md:px-8 lg:px-20">
+        <section className="relative min-h-screen flex items-center py-12 px-4 md:px-8 lg:px-20 z-10">
+          {/* Scan Line Effect */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
+            <div className="absolute w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent animate-scan-line"></div>
+          </div>
           <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
             
             {/* Left side - Content (2/3 on desktop) */}
@@ -22,48 +41,71 @@ export default function Home() {
               <div className="max-w-3xl">
                 {/* Welcome badge */}
                 <div className="inline-block mb-6 px-4 py-2 bg-primary/20 rounded-full text-sm font-medium text-primary border border-primary/30 animate-fade-in hover:bg-primary/30 transition-all cursor-default">
-                  ✨ Chào mừng bạn đến với portfolio của mình
+                  ✨ {t('welcome')}
                 </div>
                 
                 {/* Name */}
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight animate-slide-up text-white">
-                  Xin chào, mình là{' '}
+                  {t('greeting')}{' '}
                   <span className="bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent hover:from-blue-400 hover:to-primary transition-all duration-500">
                     Quang Tín
                   </span>
                 </h1>
                 
+                {/* Slogan - NEW! */}
+                <div className="relative mb-6 animate-slide-up group" style={{ animationDelay: '0.05s' }}>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-primary via-blue-500 to-purple-500 rounded-2xl blur-xl opacity-40 group-hover:opacity-60 animate-glow-pulse"></div>
+                  <div className="relative bg-gradient-to-r from-primary/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-2xl px-6 py-4 border-2 border-transparent bg-clip-padding">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary via-blue-500 to-purple-500 opacity-50 animate-border-flow"></div>
+                    <div className="absolute inset-[2px] rounded-2xl bg-background-dark"></div>
+                    <p className="relative text-2xl md:text-3xl font-bold text-center bg-gradient-to-r from-primary via-blue-400 to-purple-400 bg-clip-text text-transparent animate-shimmer">
+                      <span className="inline-block hover:animate-glitch">"{t('slogan')}"</span>
+                    </p>
+                  </div>
+                </div>
+
                 {/* Title / Profession */}
                 <h2 className="text-2xl md:text-3xl font-semibold text-primary mb-6 animate-slide-up"
                     style={{ animationDelay: '0.1s' }}>
-                  Đam mê lập trình & chia sẻ kiến thức 💻
+                  {t('tagline')}
                 </h2>
                 
                 {/* Description */}
                 <p className="text-lg md:text-xl text-text-secondary mb-8 leading-relaxed animate-fade-in">
-                  Học và chia sẻ về nhiều ngôn ngữ lập trình như{' '}
-                  <span className="font-semibold text-cyan-400">Java</span>,{' '}
-                  <span className="font-semibold text-yellow-400">JavaScript</span>,{' '}
-                  <span className="font-semibold text-green-400">Python</span>{' '}
-                  và nhiều công nghệ khác. Xây dựng blog để ghi lại hành trình học tập và kết nối với cộng đồng! 🚀
+                  {t('description')}
                 </p>
                 
-                {/* CTA Buttons */}
+                {/* CTA Buttons - MODIFIED */}
                 <div className="flex flex-col sm:flex-row gap-4 mb-8 animate-fade-in">
                   <Link 
                     href="/blog"
-                    className="group relative px-8 py-4 bg-primary text-white font-semibold rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 hover:scale-105"
+                    className="group relative px-8 py-4 bg-primary text-white font-semibold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105"
                   >
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary via-blue-500 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-border-flow"></div>
+                    <div className="absolute inset-0 bg-primary group-hover:bg-transparent transition-all duration-300"></div>
                     <span className="relative z-10 flex items-center justify-center gap-2">
-                      📚 Xem bài viết
+                      <span className="text-xl group-hover:animate-float">📚</span>
+                      <span>{t('viewPosts')}</span>
                     </span>
                   </Link>
                   <Link 
                     href="/profile"
                     className="px-8 py-4 bg-card-dark text-white font-semibold rounded-xl border-2 border-card-border hover:border-primary hover:text-primary transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center justify-center gap-2"
                   >
-                    👨‍💻 Về mình
+                    👨‍💻 {t('aboutMe')}
                   </Link>
+                  {/* Download CV Button - NEW! */}
+                  <a 
+                    href="/Văn_Quang_Tín_cv.pdf"
+                    download="Van_Quang_Tin_CV.pdf"
+                    className="group relative px-8 py-4 bg-gradient-to-r from-green-600 to-green-500 text-white font-semibold rounded-xl border-2 border-green-500 hover:border-green-400 transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    {t('downloadCV')}
+                  </a>
                 </div>
                 
                 {/* Social Media Icons */}
@@ -94,9 +136,12 @@ export default function Home() {
             
             {/* Right side - Portrait Image (1/3 on desktop) */}
             <div className="lg:col-span-1 order-1 lg:order-2 flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-sm lg:max-w-none animate-fade-in">
+              <div className="relative w-full max-w-sm lg:max-w-none animate-fade-in animate-float">
                 {/* Decorative gradient background */}
-                <div className="absolute -inset-4 bg-gradient-to-br from-primary via-blue-500 to-blue-400 rounded-3xl opacity-20 blur-3xl"></div>
+                <div className="absolute -inset-4 bg-gradient-to-br from-primary via-blue-500 to-blue-400 rounded-3xl opacity-30 blur-3xl animate-glow-pulse"></div>
+                
+                {/* Holographic border effect */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary via-blue-500 to-purple-500 rounded-3xl opacity-75 blur-sm animate-border-flow"></div>
                 
                 {/* Portrait container */}
                 <div className="relative aspect-[3/4] w-full max-w-sm lg:max-w-none overflow-hidden rounded-3xl shadow-2xl border-4 border-card-border group">
@@ -122,14 +167,16 @@ export default function Home() {
         </section>
 
         {/* Projects Section */}
-        <section className="py-20 px-4 border-t border-card-border">
+        <section className="relative py-20 px-4 border-t border-card-border z-10">
+          {/* Section background effect */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-50"></div>
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16 animate-fade-in">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-                Dự án của tôi <span className="text-primary">🚀</span>
+                {t('myProjects')} <span className="text-primary">🚀</span>
               </h2>
               <p className="text-xl text-text-secondary max-w-2xl mx-auto">
-                Các dự án lập trình mạng và web development tôi đã thực hiện
+                {t('projectsSubtitle')}
               </p>
             </div>
 
@@ -138,11 +185,11 @@ export default function Home() {
               <div className="group bg-card-dark rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-card-border hover:border-red-500 transform hover:-translate-y-2 animate-slide-up" style={{ animationDelay: '0.1s' }}>
                 <div className="bg-gradient-to-br from-red-600 to-red-500 p-8 text-white">
                   <div className="text-5xl mb-4">🛒</div>
-                  <h3 className="text-2xl font-bold">T-TShopGear E-commerce</h3>
+                  <h3 className="text-2xl font-bold">{t('ecommerce')}</h3>
                 </div>
                 <div className="p-6">
                   <p className="text-text-secondary mb-4 leading-relaxed">
-                    Website bán hàng điện tử đầy đủ tính năng với quản lý sản phẩm, giỏ hàng, đơn hàng, thanh toán MoMo và phân quyền Admin/Customer.
+                    {t('ecommerceDescription')}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     <span className="px-3 py-1 bg-card-border text-text-secondary rounded-full text-sm font-medium">ASP.NET Core</span>
@@ -157,7 +204,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className="text-red-400 font-semibold hover:text-red-300 flex items-center gap-2 group-hover:translate-x-2 transition-transform duration-300"
                   >
-                    Xem trên GitHub →
+                    {t('viewOnGithub')} →
                   </a>
                 </div>
               </div>
@@ -166,21 +213,21 @@ export default function Home() {
               <div className="group bg-card-dark rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-card-border hover:border-blue-500 transform hover:-translate-y-2 animate-slide-up" style={{ animationDelay: '0.2s' }}>
                 <div className="bg-gradient-to-br from-blue-600 to-blue-500 p-8 text-white">
                   <div className="text-5xl mb-4">🎬</div>
-                  <h3 className="text-2xl font-bold">Cinema Booking App</h3>
+                  <h3 className="text-2xl font-bold">{t('cinema')}</h3>
                 </div>
                 <div className="p-6">
                   <p className="text-text-secondary mb-4 leading-relaxed">
-                    Ứng dụng mobile đặt vé xem phim với Firebase Firestore, chọn ghế real-time, thanh toán và quản lý booking. Hỗ trợ dynamic pricing và transaction-based booking.
+                    {t('cinemaDescription')}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="px-3 py-1 bg-card-border text-text-secondary rounded-full text-sm font-medium">Flutter</span>
-                    <span className="px-3 py-1 bg-card-border text-text-secondary rounded-full text-sm font-medium">Dart</span>
-                    <span className="px-3 py-1 bg-card-border text-text-secondary rounded-full text-sm font-medium">Firebase</span>
-                    <span className="px-3 py-1 bg-card-border text-text-secondary rounded-full text-sm font-medium">Firestore</span>
-                    <span className="px-3 py-1 bg-card-border text-text-secondary rounded-full text-sm font-medium">Authentication</span>
+                    <span className="px-3 py-1 bg-card-border text-text-secondary rounded-full text-sm font-medium hover:bg-cyan-500/20 hover:text-cyan-400 hover:scale-110 transition-all cursor-default">Next.js</span>
+                    <span className="px-3 py-1 bg-card-border text-text-secondary rounded-full text-sm font-medium hover:bg-cyan-500/20 hover:text-cyan-400 hover:scale-110 transition-all cursor-default">React</span>
+                    <span className="px-3 py-1 bg-card-border text-text-secondary rounded-full text-sm font-medium hover:bg-cyan-500/20 hover:text-cyan-400 hover:scale-110 transition-all cursor-default">Tailwind CSS</span>
+                    <span className="px-3 py-1 bg-card-border text-text-secondary rounded-full text-sm font-medium hover:bg-cyan-500/20 hover:text-cyan-400 hover:scale-110 transition-all cursor-default">Markdown</span>
+                    <span className="px-3 py-1 bg-card-border text-text-secondary rounded-full text-sm font-medium hover:bg-cyan-500/20 hover:text-cyan-400 hover:scale-110 transition-all cursor-default">Vercel</span>
                   </div>
                   <a 
-                    href="https://github.com/quocthaj/cinema_flutter_app"
+                    href="https://github.com/quangtin137/cinema_flutter_app"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-400 font-semibold hover:text-blue-300 flex items-center gap-2 group-hover:translate-x-2 transition-transform duration-300"
@@ -198,7 +245,7 @@ export default function Home() {
                 </div>
                 <div className="p-6">
                   <p className="text-text-secondary mb-4 leading-relaxed">
-                    Đồ án cơ sở: Ứng dụng mobile nhận diện cảm xúc khuôn mặt sử dụng CNN, MobileNet, ResNet18. Phát hiện và phân loại 6-7 loại cảm xúc từ camera và ảnh.
+                    {t('emotionDescription')}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     <span className="px-3 py-1 bg-card-border text-text-secondary rounded-full text-sm font-medium">Flutter</span>
@@ -208,12 +255,12 @@ export default function Home() {
                     <span className="px-3 py-1 bg-card-border text-text-secondary rounded-full text-sm font-medium">Deep Learning</span>
                   </div>
                   <a 
-                    href="https://github.com/Longhanhmid24/App_Mobile_Emotion"
+                    href="https://github.com/quangtin137/App_Mobile_Emotion"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-purple-400 font-semibold hover:text-purple-300 flex items-center gap-2 group-hover:translate-x-2 transition-transform duration-300"
                   >
-                    Xem trên GitHub →
+                    {t('viewOnGithub')} →
                   </a>
                 </div>
               </div>
@@ -226,7 +273,7 @@ export default function Home() {
                 </div>
                 <div className="p-6">
                   <p className="text-text-secondary mb-4 leading-relaxed">
-                    Đồ án chuyên ngành: Trợ lý ảo trò chuyện thông minh dựa trên nhận diện cảm xúc khuôn mặt. Tích hợp YOLO để phát hiện khuôn mặt và AI chatbot phản hồi theo cảm xúc người dùng.
+                    {t('aiAssistantDescription')}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     <span className="px-3 py-1 bg-card-border text-text-secondary rounded-full text-sm font-medium">Flutter</span>
@@ -236,12 +283,13 @@ export default function Home() {
                     <span className="px-3 py-1 bg-card-border text-text-secondary rounded-full text-sm font-medium">Computer Vision</span>
                   </div>
                   <a 
-                    href="https://github.com/Longhanhmid24/Tro_Ly_Ao"
+                    href="https://github.com/quangtin137/Personal-blog_QuangTin"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-green-400 font-semibold hover:text-green-300 flex items-center gap-2 group-hover:translate-x-2 transition-transform duration-300"
+                    className="text-cyan-400 font-semibold hover:text-cyan-300 flex items-center gap-2 group-hover:translate-x-2 transition-transform duration-300 group/link"
                   >
-                    Xem trên GitHub →
+                    <span>{t('viewOnGithub')}</span>
+                    <span className="group-hover/link:translate-x-1 transition-transform duration-300">→</span>
                   </a>
                 </div>
               </div>
