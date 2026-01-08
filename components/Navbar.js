@@ -57,6 +57,7 @@ export default function Navbar() {
           <nav className="hidden md:flex items-center gap-8">
             <Link href="/" className={navLinkClass('/')}>{t('home')}</Link>
             <Link href="/blog" className={navLinkClass('/blog')}>{t('blog')}</Link>
+            <Link href="/projects" className={navLinkClass('/projects')}>{t('projects')}</Link>
             <Link href="/certifications" className={navLinkClass('/certifications')}>{t('certifications')}</Link>
             <Link href="/profile" className={navLinkClass('/profile')}>{t('profile')}</Link>
             <Link href="/contact" className={navLinkClass('/contact')}>{t('contact')}</Link>
@@ -106,6 +107,9 @@ export default function Navbar() {
           </Link>
           <Link href="/blog" className={`text-sm font-medium py-2 ${isActive('/blog') ? 'text-primary' : 'text-text-secondary hover:text-primary'} transition-all hover:translate-x-2`} onClick={() => setMobileMenuOpen(false)}>
             📝 {t('blog')}
+          </Link>
+          <Link href="/projects" className={`text-sm font-medium py-2 ${isActive('/projects') ? 'text-primary' : 'text-text-secondary hover:text-primary'} transition-all hover:translate-x-2`} onClick={() => setMobileMenuOpen(false)}>
+            🚀 {t('projects')}
           </Link>
           <Link href="/certifications" className={`text-sm font-medium py-2 ${isActive('/certifications') ? 'text-primary' : 'text-text-secondary hover:text-primary'} transition-all hover:translate-x-2`} onClick={() => setMobileMenuOpen(false)}>
             🏆 {t('certifications')}

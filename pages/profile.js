@@ -23,12 +23,14 @@ export default function Profile() {
         {/* Hero Header */}
         <div className="bg-gradient-to-r from-primary via-blue-500 to-indigo-500 py-20">
           <div className="container mx-auto px-4 text-center">
-            <div className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-2xl ring-4 ring-white/30">
+            <div className="relative w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-2xl ring-4 ring-white/30">
               <Image
                 src="/avatar.png"
                 alt="Quang Tin"
                 fill
-                className="object-cover"
+                className="object-cover object-center"
+                style={{ objectPosition: 'center center' }}
+                priority
               />
             </div>
             <h1 className="text-4xl font-bold text-white mb-2">Văn Quang Tín</h1>

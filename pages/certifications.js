@@ -94,18 +94,20 @@ export default function Certifications() {
               {/* Badge Image - Clickable */}
               <button
                 onClick={() => setSelectedCert(cert)}
-                className="block relative h-64 overflow-hidden bg-[#283039] cursor-pointer group/image w-full border-0 p-0"
+                className="block relative h-80 overflow-hidden bg-[#283039] cursor-pointer group/image w-full border-0 p-0"
               >
                 <Image
                   src={cert.badge}
                   alt={cert.name}
                   fill
-                  className="object-contain p-6 group-hover/image:scale-110 transition-transform duration-300"
+                  className="object-contain p-8 group-hover/image:scale-105 transition-transform duration-300"
+                  style={{ objectFit: 'contain' }}
+                  priority={cert.id === 1}
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                  <div className="opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
-                    <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 4a1 1 0 011 1v6h6a1 1 0 110 2h-6v6a1 1 0 11-2 0v-6H5a1 1 0 110-2h6V5a1 1 0 011-1z"/>
+                  <div className="opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 bg-primary/20 backdrop-blur-sm rounded-full p-4">
+                    <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
                     </svg>
                   </div>
                 </div>
@@ -225,14 +227,16 @@ export default function Certifications() {
               </div>
 
               {/* Modal Body - Certificate Image */}
-              <div className="relative w-full overflow-y-auto bg-[#283039]" style={{ maxHeight: 'calc(90vh - 100px)' }}>
-                <div className="relative w-full h-auto min-h-96">
+              <div className="relative w-full overflow-y-auto bg-[#283039] p-4" style={{ maxHeight: 'calc(90vh - 140px)' }}>
+                <div className="relative w-full bg-white rounded-lg p-4">
                   <Image
                     src={selectedCert.certificate}
                     alt={`${selectedCert.name} Certificate`}
                     width={1200}
                     height={800}
-                    className="w-full h-auto"
+                    className="w-full h-auto rounded-lg"
+                    style={{ objectFit: 'contain' }}
+                    priority
                   />
                 </div>
               </div>
